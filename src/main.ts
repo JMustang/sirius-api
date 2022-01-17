@@ -9,3 +9,4 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+//source ~/.zsh-nvm/zsh-nvm.plugin.zsh
