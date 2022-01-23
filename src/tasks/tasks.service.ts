@@ -31,6 +31,7 @@ export class TasksService {
   //   return tasks;
   // }
 
+  // Essa metodo busca uma tesks pelo ID.
   async getTaskById(id: string): Promise<Task> {
     const found = await this.tasksRepository.findOne(id);
 
@@ -40,7 +41,6 @@ export class TasksService {
 
     return found;
   }
-  // Essa metodo busca uma tesks pelo ID.
   // getTaskById(id: string): Task {
   //   const found = this.tasks.find((task) => task.id === id);
   //   if (!found) {
@@ -49,6 +49,10 @@ export class TasksService {
   //   return found;
   // }
   // Essa metodo cria uma tesks.
+
+  createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksRepository.createTask(createTaskDto);
+  }
   // createTask(createTaskDto: CreateTaskDto): Task {
   //   const { title, description } = createTaskDto;
   //   const task: Task = {
