@@ -15,6 +15,11 @@ export class TasksService {
   // getAllTasks(): Task[] {
   //   return this.tasks;
   // }
+
+  getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
+    //
+  }
+
   // getTasksWithFilters(filterDto: GetTasksFilterDto): Task[] {
   //   const { status, search } = filterDto;
   //   let tasks = this.getAllTasks();
@@ -75,10 +80,12 @@ export class TasksService {
       );
     }
   }
-  // updateTaskStatus(id: string, status: TaskStatus) {
-  //   const task = this.getTaskById(id);
-  //   task.status = status;
-  //   return task;
-  // }
+  async updateTaskStatus(id: string, status: TaskStatus): Promise<Task> {
+    const task = await this.getTaskById(id);
+
+    task.status = status;
+    await this.tasksRepository.save(task);
+    return task;
+  }
 }
 // vscode - shift + alt + F = formata o codigo no windows
