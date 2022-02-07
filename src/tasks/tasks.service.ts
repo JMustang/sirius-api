@@ -5,12 +5,15 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TasksRepository } from './tasks.repository';
 import { Task } from './task.entity';
+import { User } from 'src/auth/user.entity';
 @Injectable()
 export class TasksService {
   constructor(
     @InjectRepository(TasksRepository)
     private tasksRepository: TasksRepository,
-  ) { }
+  ) {
+    //
+  }
   // Essa metodo devolve todas as tesks que existirem.
   // getAllTasks(): Task[] {
   //   return this.tasks;
@@ -55,8 +58,8 @@ export class TasksService {
   // }
   // Essa metodo cria uma tesks.
 
-  createTask(createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.tasksRepository.createTask(createTaskDto);
+  createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
+    return this.tasksRepository.createTask(createTaskDto, user);
   }
   // createTask(createTaskDto: CreateTaskDto): Task {
   //   const { title, description } = createTaskDto;
