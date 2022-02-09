@@ -75,8 +75,8 @@ export class TasksService {
 
   // Essa metodo deleta uma tesks.
 
-  async deleteTask(id: string): Promise<void> {
-    const result = await this.tasksRepository.delete(id);
+  async deleteTask(id: string, user: User): Promise<void> {
+    const result = await this.tasksRepository.delete({ id, user });
     if (result.affected === 0) {
       throw new NotFoundException(
         `Sorry laddy, but we not found this ID "${id}" you looking for`,
