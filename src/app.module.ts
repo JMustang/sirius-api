@@ -4,6 +4,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,6 +29,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
     }),
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {
