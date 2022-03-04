@@ -4,6 +4,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,7 +16,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
+        const isProduction = configService.get('STAGE') === 'prod';
+
         return {
+          ssl: isProduction,
+          extra: {
+            ssl: isProduction ? { rejectUnauthorized: false } : null,
+          },
           type: 'postgres',
           autoLoadEntities: true,
           synchronize: true,
@@ -28,6 +35,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
     }),
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {
