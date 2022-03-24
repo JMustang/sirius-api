@@ -13,4 +13,4 @@
 1. Clone: git clone git@github.com:JMustang/sirius-api.git
 2. Download the dependencies: yarn or yarn install
 3. Start the API: yarn start:dev
-4. [SWAGGER](https://task-api-junior.herokuapp.com/api/)
+4. Link para a documentação [SWAGGER](https://task-api-junior.herokuapp.com/api/)
